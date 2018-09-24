@@ -22,16 +22,21 @@ public class Sorpresa {
         this.valor = valor;
     }
 
-    package String getTexto() {
+    private String getTexto() {
         return texto;
     }
 
-    public TipoSorpresa getTipo() {
+    private TipoSorpresa getTipo() {
         return tipo;
     }
 
-    public int getValor() {
+    private int getValor() {
         return valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Sorpresa{" + "texto=" + texto + ", tipo=" + tipo + ", valor=" + Integer.toString(valor) + '}';
     }
     
     
