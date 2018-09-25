@@ -22,15 +22,15 @@ public class Sorpresa {
         this.valor = valor;
     }
 
-    private String getTexto() {
+    public String getTexto() {
         return texto;
     }
 
-    private TipoSorpresa getTipo() {
+    public TipoSorpresa getTipo() {
         return tipo;
     }
 
-    private int getValor() {
+    public int getValor() {
         return valor;
     }
 

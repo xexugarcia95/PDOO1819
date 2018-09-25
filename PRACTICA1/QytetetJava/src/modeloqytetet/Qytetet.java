@@ -15,6 +15,22 @@ import java.util.ArrayList;
  */
 public class Qytetet {
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
+
+    public ArrayList<Sorpresa> getMazo() {
+        return mazo;
+    }
     
-    
+    public void inizializarCartasSorpresa()
+    {
+        mazo.add(new Sorpresa("El banco tira la casa por la ventana. Recibe 500",TipoSorpresa.PAGARCOBRAR,500));
+        mazo.add(new Sorpresa("Multa por bailar la conga. Paga 500",TipoSorpresa.PAGARCOBRAR,-500));
+        mazo.add(new Sorpresa("Corre como el viento perdigón!. Ve a la casilla de salida.",TipoSorpresa.IRACASILLA,0));
+        mazo.add(new Sorpresa("Te posee el espíritu de M.J y bailas un Moonwalk. Retrocede a la casilla 5.",TipoSorpresa.IRACASILLA,5));
+        mazo.add(new Sorpresa("Vas pegando brincos de alegría. Ve a la casilla 15.",TipoSorpresa.IRACASILLA,15));
+        mazo.add(new Sorpresa("El banco ha errado en la hipoteca. Recibe 50 por cada casa/hotel.",TipoSorpresa.PORCASAHOTEL,50));
+        mazo.add(new Sorpresa("Te se ha ido la olla hipotecando inmuebles. Paga 50 por cada casa/hotel",TipoSorpresa.PORCASAHOTEL,-50));
+        mazo.add(new Sorpresa("Es tu cumpleaños. Recibe 20 de cada jugador.",TipoSorpresa.PORJUGADOR,20));
+        mazo.add(new Sorpresa("Has perdido una apuesta. Paga 20 a cada jugador.",TipoSorpresa.PORJUGADOR,-20));
+        mazo.add(new Sorpresa("Has quedado libre de la cárcel.",TipoSorpresa.SALIRCARCEL,1));
+    }
 }
