@@ -4,7 +4,9 @@
 # and open the template in the editor.
 
 module ModeloQytetet
-  class PruebaQytetet
-    
+  class Qytetet
+    def initialize
+      
+    end
   end
 end
