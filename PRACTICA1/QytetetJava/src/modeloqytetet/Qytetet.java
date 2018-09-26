@@ -20,7 +20,7 @@ public class Qytetet {
         return mazo;
     }
     
-    public void inizializarCartasSorpresa()
+    public void inicializarCartasSorpresa()
     {
         mazo.add(new Sorpresa("El banco tira la casa por la ventana. Recibe 500",TipoSorpresa.PAGARCOBRAR,500));
         mazo.add(new Sorpresa("Multa por bailar la conga. Paga 500",TipoSorpresa.PAGARCOBRAR,-500));
@@ -31,6 +31,13 @@ public class Qytetet {
         mazo.add(new Sorpresa("Te se ha ido la olla hipotecando inmuebles. Paga 50 por cada casa/hotel",TipoSorpresa.PORCASAHOTEL,-50));
         mazo.add(new Sorpresa("Es tu cumpleaños. Recibe 20 de cada jugador.",TipoSorpresa.PORJUGADOR,20));
         mazo.add(new Sorpresa("Has perdido una apuesta. Paga 20 a cada jugador.",TipoSorpresa.PORJUGADOR,-20));
-        mazo.add(new Sorpresa("Has quedado libre de la cárcel.",TipoSorpresa.SALIRCARCEL,1));
+        mazo.add(new Sorpresa("Has quedado libre de la cárcel.",TipoSorpresa.SALIRCARCEL,0));
     }
+
+    /*@Override
+    public String toString() {
+        return "Qytetet{" + "mazo=" + mazo + '}';
+    }*/
+    
+    
 }

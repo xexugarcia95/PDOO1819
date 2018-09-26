@@ -36,7 +36,7 @@ public class Sorpresa {
 
     @Override
     public String toString() {
-        return "Sorpresa{" + "texto=" + texto + ", tipo=" + tipo + ", valor=" + Integer.toString(valor) + '}';
+        return "Sorpresa{" + "texto=" + texto + ", tipo=" + tipo + ", valor=" + Integer.toString(valor) + '}' + "\n";
     }
     
     
