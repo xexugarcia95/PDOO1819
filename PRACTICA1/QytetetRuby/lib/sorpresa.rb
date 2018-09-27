@@ -3,6 +3,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require_relative "tipo_sorpresa.rb"
+
 class Sorpresa
   attr_reader :texto, :tipo, :valor
   
