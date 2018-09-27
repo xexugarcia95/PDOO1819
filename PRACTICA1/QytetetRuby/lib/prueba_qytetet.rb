@@ -13,6 +13,47 @@ module ModeloQytetet
       
       @@juego.inicializar_cartas_sorpresa
       puts(@@juego.mazo)
+      puts(metodo_1)
+      puts(metodo_2)
+      arr = Array.new(TipoSorpresa::constants)
+      arr.each do |tipos|
+        puts(metodo_3(tipos))
+      end
+      
+    end
+    
+    def metodo_1
+      array = Array.new
+      puts "\nSorpresas con valor mayor que cero\n"
+      @@juego.mazo.each do |maz|
+        if maz.valor > 0
+          array<< maz
+        end
+        
+       end
+       return array
+    end
+    
+    def metodo_2
+      array = Array.new
+      puts "\nSorpresas de TipoSorpresa IRACASILLA"
+      @@juego.mazo.each do |maz|
+        if maz.tipo == TipoSorpresa::IRACASILLA
+          array<< maz
+        end
+      end
+      return array
+    end
+    
+    def metodo_3(tip)
+      puts "\nSorpresas del tipo especificado\n"
+      array = Array.new
+      @@juego.mazo.each do |maz|
+        if maz.tipo == tip
+          array<< maz
+        end
+      end
+      return array
     end
     
   end
