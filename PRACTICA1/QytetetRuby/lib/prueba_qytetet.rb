@@ -17,7 +17,8 @@ module ModeloQytetet
       puts(metodo_2)
       arr = Array.new(TipoSorpresa::constants)
       arr.each do |tipos|
-        puts(metodo_3(tipos))
+        #puts metodo_3(tipos)
+        puts metodo_3(TipoSorpresa.const_get(tipos))
       end
       
     end
