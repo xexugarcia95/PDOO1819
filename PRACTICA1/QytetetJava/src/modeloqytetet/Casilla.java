@@ -15,9 +15,9 @@ public class Casilla {
     private TipoCasilla tipo;
     private TituloPropiedad titulo;
 
-    public Casilla(int numeroCasilla, int coste,TipoCasilla tipo) {
+    public Casilla(int numeroCasilla,TipoCasilla tipo) {
         this.numeroCasilla = numeroCasilla;
-        this.coste = coste;
+        this.coste = 0;
         this.tipo = tipo;
         this.titulo = null;
     }

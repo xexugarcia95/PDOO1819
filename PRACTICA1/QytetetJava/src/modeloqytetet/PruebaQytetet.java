@@ -17,7 +17,9 @@ public class PruebaQytetet {
     public static void main(String[] args) {
        PruebaQytetet prueba = new PruebaQytetet();
        juego.inicializarCartasSorpresa();
-       
+       System.out.println("Tablero\n");
+       System.out.println(juego.getTablero().toString());
+       System.out.println("Sorpresas\n");
        System.out.println(juego.getMazo().toString());
        
        System.out.println(prueba.metodo1());
