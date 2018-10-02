@@ -20,9 +20,9 @@ public class TituloPropiedad {
     private int numCasas;
     private int numHoteles;
 
-    public TituloPropiedad(String nombre, boolean hipotecada, int precioCompra, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
+    public TituloPropiedad(String nombre, int precioCompra, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
         this.nombre = nombre;
-        this.hipotecada = hipotecada;
+        this.hipotecada = false;
         this.precioCompra = precioCompra;
         this.alquilerBase = alquilerBase;
         this.factorRevalorizacion = factorRevalorizacion;

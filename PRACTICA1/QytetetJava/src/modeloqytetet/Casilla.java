@@ -22,6 +22,7 @@ public class Casilla {
         this.titulo = null;
     }
 
+    //Constructor para Casillas del TipoCasilla -> CALLE
     public Casilla(int numeroCasilla,TituloPropiedad titulo) {
         this.numeroCasilla = numeroCasilla;
         setTitulo(titulo);
