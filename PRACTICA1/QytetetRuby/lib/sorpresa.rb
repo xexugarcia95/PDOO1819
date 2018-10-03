@@ -4,17 +4,18 @@
 # and open the template in the editor.
 
 require_relative "tipo_sorpresa.rb"
-
-class Sorpresa
-  attr_reader :texto, :tipo, :valor
+module ModeloQytetet
+  class Sorpresa
+    attr_reader :texto, :tipo, :valor
   
-  def initialize(texto,tipo,valor)
-    @texto = texto
-    @tipo = tipo
-    @valor = valor
-  end
-  
-  def to_s
-    "Texto: #{@texto} \n Valor: #{@valor} \n Tipo: #{@tipo}"
+    def initialize(texto,tipo,valor)
+      @texto = texto
+      @tipo = tipo
+      @valor = valor
+    end
+    
+    def to_s
+      "Texto: #{@texto} \n Valor: #{@valor} \n Tipo: #{@tipo}"
+    end
   end
 end

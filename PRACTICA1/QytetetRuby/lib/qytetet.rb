@@ -7,12 +7,13 @@ require_relative "sorpresa.rb"
 
 module ModeloQytetet
   class Qytetet
-    attr_reader :mazo
+    attr_reader :mazo, :tablero
     
     @mazo
-    
+    @tablero
     def inicializar_cartas_sorpresa
         @mazo = Array.new
+        inicializar_tablero
         mazo << Sorpresa.new("El banco tira la casa por la ventana. Recibe 500",TipoSorpresa::PAGARCOBRAR,500)
         mazo << Sorpresa.new("Multa por bailar la conga. Paga 500",TipoSorpresa::PAGARCOBRAR,-500)
         mazo << Sorpresa.new("Corre como el viento perdigón!. Ve a la casilla de salida.",TipoSorpresa::IRACASILLA,0)
@@ -23,6 +24,12 @@ module ModeloQytetet
         mazo << Sorpresa.new("Es tu cumpleaños. Recibe 20 de cada jugador.",TipoSorpresa::PORJUGADOR,20)
         mazo << Sorpresa.new("Has perdido una apuesta. Paga 20 a cada jugador.",TipoSorpresa::PORJUGADOR,-20)
         mazo << Sorpresa.new("Has quedado libre de la cárcel.",TipoSorpresa::SALIRCARCEL,0)
+    end
+    
+    private
+    
+    def inicializar_tablero
+      @tablero = Tablero.new
     end
     
   end

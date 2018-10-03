@@ -4,6 +4,7 @@
 # and open the template in the editor.
 
 require_relative "qytetet.rb"
+require_relative "tablero.rb"
 
 module ModeloQytetet
   class PruebaQytetet
@@ -12,6 +13,9 @@ module ModeloQytetet
     def main
       
       @@juego.inicializar_cartas_sorpresa
+      puts "Tablero\n"
+      puts(@@juego.tablero)
+      puts "Mazo\n"
       puts(@@juego.mazo)
       puts(metodo_1)
       puts(metodo_2)
