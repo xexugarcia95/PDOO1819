@@ -16,8 +16,10 @@ import java.util.ArrayList;
 public class Tablero {
     private ArrayList<Casilla> casillas;
     private Casilla carcel;
+    private TipoTablero tipo;
 
-    public Tablero() {
+    public Tablero(TipoTablero tipo) {
+        this.tipo = tipo;
         inicializar();
     }
     
@@ -55,10 +57,16 @@ public class Tablero {
         return carcel;
     }
 
+    public TipoTablero getTipo() {
+        return tipo;
+    }
+
     @Override
     public String toString() {
-        return "Tablero{" + "casillas=" + casillas + ", carcel=" + carcel + '}';
+        return "Tablero{" + "casillas=" + casillas + ", carcel=" + carcel + ", tipo=" + tipo + '}';
     }
+    
+    
     
     
     

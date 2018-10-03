@@ -23,7 +23,7 @@ public class Qytetet {
     
     private void inicializarTablero()
     {
-        tablero = new Tablero();
+        tablero = new Tablero(TipoTablero.PUEBLO);
     }
     
     public void inicializarCartasSorpresa()
