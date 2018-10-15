@@ -29,20 +29,45 @@ public class Casilla {
         this.tipo = TipoCasilla.CALLE;
         this.coste = this.titulo.getPrecioCompra();
     }
+    
+    TituloPropiedad asignarPropietario(Jugador jugador)
+    {
+        
+    }
+    
+    int pagarAlquiler()
+    {
+        
+    }
+    
+    boolean PropietarioEncarcelado()
+    {
+        
+    }
+    
+    boolean soyEdificable()
+    {
+        
+    }
+    
+    boolean tengoPropietario()
+    {
+        
+    }
 
-    public int getNumeroCasilla() {
+    int getNumeroCasilla() {
         return numeroCasilla;
     }
 
-    public int getCoste() {
+    int getCoste() {
         return coste;
     }
 
-    public TipoCasilla getTipo() {
+    TipoCasilla getTipo() {
         return tipo;
     }
 
-    public TituloPropiedad getTitulo() {
+    TituloPropiedad getTitulo() {
         return titulo;
     }
 

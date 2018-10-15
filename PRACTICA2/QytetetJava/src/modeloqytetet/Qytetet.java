@@ -16,17 +16,160 @@ import java.util.ArrayList;
 public class Qytetet {
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
     private Tablero tablero;
+    private static final Qytetet instance = new Qytetet();
+    public int MAX_JUGADORES = 4;
+    int NUM_SORPRESAS = 10;
+    public int NUM_CASILLAS = 20;
+    int PRECIO_LIBERTAD = 200;
+    int SALDO_SALIDA = 1000;
+    private Sorpresa cartaActual;
+    private Jugador jugadorActual;
+    private ArrayList<Jugador> jugadores;
+    private Dado dado;
     
-    public ArrayList<Sorpresa> getMazo() {
-        return mazo;
+    private Qytetet()
+    {}
+    
+    public static Qytetet getInstance()
+    {
+        return instance;
     }
     
+   
     private void inicializarTablero()
     {
         tablero = new Tablero();
     }
     
-    public void inicializarCartasSorpresa()
+    void actuarSiEnCasillaEdificable()
+    {
+        
+    }
+    
+    void actuarSiEnCasillaNoEdificable()
+    {
+        
+    }
+    
+    public void aplicarSorpresa()
+    {
+        
+    }
+    
+    public boolean cancelarHipoteca(int numeroCasilla)
+    {
+        
+    }
+    
+    public boolean comprarTituloPropiedad() throws UnsupportedOperationException
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    public boolean edificarCasa(int numeroCasilla)
+    {
+        
+    }
+    
+    public boolean edificarHotel(int numeroCasilla)
+    {
+        
+    }
+    
+    private void encarcelarJugador()
+    {
+        
+    }
+
+    public int getValorDado()
+    {
+        
+    }
+    
+    public void hipotecarPropiedad(int numeroCasilla)
+    {
+        
+    }
+    
+    public void inicializarJuego(ArrayList<String> nombres)
+    {
+        
+    }
+    
+    private void inicializarJugadores(ArrayList<String> nombres)
+    {
+        
+    }
+    
+    public boolean intentarSalirCarcel(MetodoSalirCarcel metodo)
+    {
+        
+    }
+    
+    public void jugar()
+    {
+        
+    }
+    
+    void mover(int numCasillaDestino)
+    {
+        
+    }
+    
+    public Casilla obtenerCasillaJugadorActual()
+    {
+        
+    }
+    
+    public ArrayList<Casilla> obtenerCasillasTablero()
+    {
+        
+    }
+    
+    public ArrayList<Integer> obtenerPropiedadesJugador()
+    {
+        
+    }
+    
+    public ArrayList<Integer> obtenerPropiedadesJugadorSegunEstadoHipoteca(boolean estadoHipoteca)
+    {
+        
+    }
+    
+    public void obtenerRanking()
+    {
+        
+    }
+    
+    public int obtenerSaldoJugadorActual()
+    {
+        
+    }
+    
+    private void salidaJugadores()
+    {
+        
+    }
+    
+    public void siguienteJugador()
+    {
+        
+    }
+    
+    int tirarDado()
+    {
+        
+    }
+    
+    public boolean venderPropiedad(int numeroCasilla)
+    {
+        
+    }
+    
+    
+    
+    
+    void inicializarCartasSorpresa()
     {
         inicializarTablero();
         mazo.add(new Sorpresa("El banco tira la casa por la ventana. Recibe 500",TipoSorpresa.PAGARCOBRAR,500));
@@ -48,5 +191,35 @@ public class Qytetet {
         return tablero;
     }
     
+    public Sorpresa getCartaActual() {
+        return cartaActual;
+    }
+
+    Jugador getJugadorActual() {
+        return jugadorActual;
+    }
+
+    ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    Dado getDado() {
+        return dado;
+    }
+    
+     ArrayList<Sorpresa> getMazo() {
+        return mazo;
+    }
+
+    private void setCartaActual(Sorpresa cartaActual) {
+        this.cartaActual = cartaActual;
+    }
+
+    @Override
+    public String toString() {
+        return "Qytetet{" + "mazo=" + mazo + ", tablero=" + tablero + ", MAX_JUGADORES=" + MAX_JUGADORES + ", NUM_SORPRESAS=" + NUM_SORPRESAS + ", NUM_CASILLAS=" + NUM_CASILLAS + ", PRECIO_LIBERTAD=" + PRECIO_LIBERTAD + ", SALDO_SALIDA=" + SALDO_SALIDA + ", cartaActual=" + cartaActual + ", jugadorActual=" + jugadorActual + ", jugadores=" + jugadores + ", dado=" + dado + '}';
+    }
+     
+     
     
 }

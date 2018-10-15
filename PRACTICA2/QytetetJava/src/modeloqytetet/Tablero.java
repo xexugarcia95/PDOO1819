@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Tablero {
     private ArrayList<Casilla> casillas;
     private Casilla carcel;
+    private int NUM_CASILLAS;
 
     public Tablero() {
         inicializar();
@@ -46,12 +47,27 @@ public class Tablero {
         casillas.add(carcel);
         casillas.add(new Casilla(19,TipoCasilla.SORPRESA));
     }
+    
+    boolean esCasillaCarcel(int numeroCasilla)
+    {
+        
+    }
+    
+    Casilla obtenerCasillaFinal(Casilla casilla, int desplazamiento)
+    {
+        
+    }
+    
+    Casilla obtenerCasillaNumero(int numeroCasilla)
+    {
+        
+    }
 
-    public ArrayList<Casilla> getCasillas() {
+    ArrayList<Casilla> getCasillas() {
         return casillas;
     }
 
-    public Casilla getCarcel() {
+    Casilla getCarcel() {
         return carcel;
     }
 

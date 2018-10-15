@@ -19,6 +19,7 @@ public class TituloPropiedad {
     private int precioEdificar;
     private int numCasas;
     private int numHoteles;
+    private Jugador propietario;
 
     public TituloPropiedad(String nombre, int precioCompra, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
         this.nombre = nombre;
@@ -31,6 +32,46 @@ public class TituloPropiedad {
         this.hipotecada = false;
         this.numCasas = 0;
         this.numHoteles = 0;
+    }
+    
+    int calcularCosteCancelar()
+    {
+        
+    }
+    
+    int calcularCosteHipotecar()
+    {
+        
+    }
+    
+    int calcularImporteAlquiler()
+    {
+        
+    }
+    
+    int calcularPrecioVenta()
+    {
+        
+    }
+    
+    void cancelarHipoteca()
+    {
+        
+    }
+    
+    void cobrarAlquiler(int coste)
+    {
+        
+    }
+    
+    void edificarCasa()
+    {
+        
+    }
+    
+    void edificarHotel()
+    {
+        
     }
 
     public String getNombre() {
@@ -72,6 +113,36 @@ public class TituloPropiedad {
     public void setHipotecada(boolean hipotecada) {
         this.hipotecada = hipotecada;
     }
+    
+    int hipotecar()
+    {
+        
+    }
+    
+    int pagarAlquiler()
+    {
+        
+    }
+    
+    boolean propietarioEncarcelado()
+    {
+        
+    }
+    
+    boolean tengoPropietario()
+    {
+        
+    }
+
+    Jugador getPropietario() {
+        return propietario;
+    }
+
+    void setPropietario(Jugador propietario) {
+        this.propietario = propietario;
+    }
+    
+    
 
     @Override
     public String toString() {
