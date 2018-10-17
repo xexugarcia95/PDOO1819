@@ -18,6 +18,15 @@ public class Jugador {
     private Sorpresa cartaLibertad;
     private Casilla casillaActual;
     private ArrayList<TituloPropiedad> propiedades;
+
+    public Jugador(String nombre) {
+        this.nombre = nombre;
+        this.encarcelado = false;
+        this.saldo = 7500;
+        
+    }
+    
+    
     
     boolean cancelarHipoteca(TituloPropiedad titulo)
     {

@@ -15,9 +15,9 @@ public class PruebaQytetet {
        private static Qytetet juego = Qytetet.getInstance();
     
     public static void main(String[] args) {
-       PruebaQytetet prueba = new PruebaQytetet();
-       juego.inicializarCartasSorpresa();
-       System.out.println("Tablero\n");
+       //PruebaQytetet prueba = new PruebaQytetet();
+       juego.getNombreJugadores();
+       /*System.out.println("Tablero\n");
        System.out.println(juego.getTablero().toString());
        System.out.println("Sorpresas\n");
        System.out.println(juego.getMazo().toString());
@@ -30,7 +30,10 @@ public class PruebaQytetet {
        {
           System.out.println(prueba.metodo3(tipo)); 
        }
+       */
+       System.out.println(juego.toString(
        
+       ));
     }
     
     private ArrayList<Sorpresa> metodo1() //sorpresas cuyo valor es mayor a 0

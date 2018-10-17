@@ -7,6 +7,7 @@
 package modeloqytetet;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -24,11 +25,17 @@ public class Qytetet {
     int SALDO_SALIDA = 1000;
     private Sorpresa cartaActual;
     private Jugador jugadorActual;
-    private ArrayList<Jugador> jugadores;
+    private ArrayList<Jugador> jugadores = new ArrayList<>();
     private Dado dado;
+    private static final Scanner in= new Scanner(System.in);
     
     private Qytetet()
-    {}
+    {
+       ArrayList<String> nombres = new ArrayList();
+       nombres.add("Jugador 1");
+       nombres.add("Jugador 2");
+       inicializarJuego(nombres);
+    }
     
     public static Qytetet getInstance()
     {
@@ -93,12 +100,17 @@ public class Qytetet {
     
     public void inicializarJuego(ArrayList<String> nombres)
     {
-        
+        inicializarJugadores(nombres);
+        inicializarCartasSorpresa();
     }
     
     private void inicializarJugadores(ArrayList<String> nombres)
     {
-        
+        for(int i=0;i<nombres.size();i++)
+        { 
+            Jugador j = new Jugador(nombres.get(i));
+            jugadores.add(j);
+        }
     }
     
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo)
@@ -185,7 +197,20 @@ public class Qytetet {
     }
     
     
-    
+    public ArrayList<String> getNombreJugadores()
+    {
+        
+        ArrayList<String> array = new ArrayList<>();
+        for(Jugador j: jugadores)
+        {
+            System.out.println(j.getNombre());
+            String s = in.nextLine();
+            System.out.println(s);
+            array.add(s);
+        }
+        
+        return array;
+    }
 
     public Tablero getTablero() {
         return tablero;
@@ -219,6 +244,8 @@ public class Qytetet {
     public String toString() {
         return "Qytetet{" + "mazo=" + mazo + ", tablero=" + tablero + ", MAX_JUGADORES=" + MAX_JUGADORES + ", NUM_SORPRESAS=" + NUM_SORPRESAS + ", NUM_CASILLAS=" + NUM_CASILLAS + ", PRECIO_LIBERTAD=" + PRECIO_LIBERTAD + ", SALDO_SALIDA=" + SALDO_SALIDA + ", cartaActual=" + cartaActual + ", jugadorActual=" + jugadorActual + ", jugadores=" + jugadores + ", dado=" + dado + '}';
     }
+
+
      
      
     
