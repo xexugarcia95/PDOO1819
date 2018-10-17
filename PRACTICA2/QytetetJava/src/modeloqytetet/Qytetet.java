@@ -58,22 +58,22 @@ public class Qytetet {
     
     public boolean cancelarHipoteca(int numeroCasilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
-    public boolean comprarTituloPropiedad() throws UnsupportedOperationException
+    public boolean comprarTituloPropiedad() 
     {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public boolean edificarCasa(int numeroCasilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public boolean edificarHotel(int numeroCasilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     private void encarcelarJugador()
@@ -83,7 +83,7 @@ public class Qytetet {
 
     public int getValorDado()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public void hipotecarPropiedad(int numeroCasilla)
@@ -103,7 +103,7 @@ public class Qytetet {
     
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public void jugar()
@@ -118,22 +118,22 @@ public class Qytetet {
     
     public Casilla obtenerCasillaJugadorActual()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public ArrayList<Casilla> obtenerCasillasTablero()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public ArrayList<Integer> obtenerPropiedadesJugador()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public ArrayList<Integer> obtenerPropiedadesJugadorSegunEstadoHipoteca(boolean estadoHipoteca)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public void obtenerRanking()
@@ -143,7 +143,7 @@ public class Qytetet {
     
     public int obtenerSaldoJugadorActual()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     private void salidaJugadores()
@@ -158,12 +158,12 @@ public class Qytetet {
     
     int tirarDado()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public boolean venderPropiedad(int numeroCasilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     

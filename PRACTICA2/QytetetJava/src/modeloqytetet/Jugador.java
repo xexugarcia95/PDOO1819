@@ -21,77 +21,77 @@ public class Jugador {
     
     boolean cancelarHipoteca(TituloPropiedad titulo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean comprarTituloPropiedad()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int cuantasCasasHotelesTengo()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean deboPagarAlquiler()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     Sorpresa devolverCartaLibertad()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean edificarCasa(TituloPropiedad titulo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean edificarHotel(TituloPropiedad titulo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     private void eliminarDeMisPropiedades(TituloPropiedad titulo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     private boolean esDeMiPropiedad(TituloPropiedad titulo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean estoyEnCalleLibre()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean hipotecarPropiedad(TituloPropiedad titulo)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     void irACarcel(Casilla casilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int modificarSaldo(int cantidad)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int obtenerCapital()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     ArrayList<TituloPropiedad> obtenerPropiedades(boolean hipotecada)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     void pagarAlquiler()
@@ -111,17 +111,17 @@ public class Jugador {
     
     boolean tengoCartaLibertad()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     private boolean tengoSaldo(int cantidad)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean venderPropiedad(Casilla casilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     

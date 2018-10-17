@@ -36,22 +36,22 @@ public class TituloPropiedad {
     
     int calcularCosteCancelar()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int calcularCosteHipotecar()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int calcularImporteAlquiler()
     {
-        
+       throw new UnsupportedOperationException("Sin implementar"); 
     }
     
     int calcularPrecioVenta()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     void cancelarHipoteca()
@@ -116,22 +116,22 @@ public class TituloPropiedad {
     
     int hipotecar()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int pagarAlquiler()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean propietarioEncarcelado()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean tengoPropietario()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
 
     Jugador getPropietario() {

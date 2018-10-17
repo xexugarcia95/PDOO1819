@@ -32,27 +32,27 @@ public class Casilla {
     
     TituloPropiedad asignarPropietario(Jugador jugador)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     int pagarAlquiler()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean PropietarioEncarcelado()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean soyEdificable()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     boolean tengoPropietario()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
 
     int getNumeroCasilla() {

@@ -21,7 +21,7 @@ public class Dado {
     
     int tirar()
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public static Dado getInstance()

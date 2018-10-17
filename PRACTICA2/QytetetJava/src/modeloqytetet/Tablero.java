@@ -50,17 +50,17 @@ public class Tablero {
     
     boolean esCasillaCarcel(int numeroCasilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     Casilla obtenerCasillaFinal(Casilla casilla, int desplazamiento)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     Casilla obtenerCasillaNumero(int numeroCasilla)
     {
-        
+        throw new UnsupportedOperationException("Sin implementar");
     }
 
     ArrayList<Casilla> getCasillas() {

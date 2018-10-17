@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Jesus Manuel Garcia Palma
  */
 public class PruebaQytetet {
-       private static Qytetet juego = new Qytetet();
+       private static Qytetet juego = Qytetet.getInstance();
     
     public static void main(String[] args) {
        PruebaQytetet prueba = new PruebaQytetet();
