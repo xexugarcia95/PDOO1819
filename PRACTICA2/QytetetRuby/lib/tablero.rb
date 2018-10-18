@@ -6,9 +6,13 @@
 require_relative "casilla.rb"
 
 module ModeloQytetet
+  
+  attr_reader :casillas,:carcel
+  
   class Tablero
     @casillas
     @carcel
+    @@num_casillas
     def initialize
       inicializar
     end
@@ -40,6 +44,21 @@ module ModeloQytetet
         @casillas << Casilla.new(19,TipoCasilla::SORPRESA,0)
     
     end
+    
+     def esCasillaCarcel(numeroCasilla)
+    
+        raise NotImplementedError
+     end
+    
+     def obtenerCasillaFinal(casilla,desplazamiento)
+    
+        raise NotImplementedError
+     end
+    
+     def obtenerCasillaNumero(numeroCasilla)
+     
+        raise NotImplementedError
+     end
     
     def to_s
       

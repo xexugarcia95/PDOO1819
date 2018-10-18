@@ -24,8 +24,33 @@ module ModeloQytetet
         @coste = 0
         
       end
-    
     end
+    
+    def asignarPropietario(jugador)
+    
+        raise NotImplementedError
+    end
+    
+    def pagarAlquiler
+    
+        raise NotImplementedError
+    end
+    
+    def PropietarioEncarcelado
+    
+        raise NotImplementedError
+    end
+    
+    def soyEdificable
+    
+        raise NotImplementedError
+    end
+    
+    def tengoPropietario
+    
+        raise NotImplementedError
+    end
+
     
     def to_s
       "N_casilla: #{@numero_casilla} \n Tipo: #{@tipo} \n Titulo: #{@titulo} \n Coste: #{@coste} \n\n"

@@ -19,7 +19,48 @@ module ModeloQytetet
       @hipotecada = false
       @num_casas = 0
       @num_hoteles = 0
+      @propietario = nil
     end
+    
+    def calcularCosteCancelar
+    
+        raise NotImplementedError
+    end
+    
+    def calcularCosteHipotecar
+    
+        raise NotImplementedError
+    end
+    
+    def calcularImporteAlquiler
+    
+       raise NotImplementedError 
+    end
+    
+    def calcularPrecioVenta
+    
+        raise NotImplementedError
+    end
+    
+    def cancelarHipoteca
+    
+    end    
+    
+    
+     def cobrarAlquiler(coste)
+    
+     end
+    
+    
+    def edificarCasa
+    
+    end   
+    
+    
+    def edificarHotel
+    
+    end   
+    
     
     def to_s
       "\nNombre: #{@nombre} \n Precio_compra: #{@precio_compra} \n Alquiler_base: #{@alquiler_base} \n Factor_revalorizacion: #{@factor_revalorizacion} \n Hipoteca_base: #{@hipoteca_base} \n Precio_edificar: #{@precio_edificar} \n Hipotecada: #{@hipotecada} \n Num_casas: #{@num_casas} \n Num_hoteles: #{@num_hoteles}"
