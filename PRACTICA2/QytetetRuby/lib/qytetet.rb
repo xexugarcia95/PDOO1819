@@ -90,18 +90,18 @@ module ModeloQytetet
 
 
 
-    def entarSalirCarcel(metodo)
-    {
+    def entrarSalirCarcel(metodo)
+    
         raise NotImplementedError
-    }
+    end
 
     def jugar()
 
 
     end
 
-    def( numCasillaDestino)
-
+    def (numCasillaDestino)
+      
 
     end
 
