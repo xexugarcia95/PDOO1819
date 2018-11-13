@@ -75,7 +75,7 @@ module ModeloQytetet
     def getValorDado
 
         raise NotImplementedError
-
+    end
 
     def hipotecarPropiedad(numeroCasilla)
 
@@ -100,7 +100,7 @@ module ModeloQytetet
 
     end
 
-    def (numCasillaDestino)
+    def mover(numCasillaDestino)
       
 
     end
@@ -143,9 +143,9 @@ module ModeloQytetet
     end
 
     def tirarDado
-    {
+    
         raise NotImplementedError
-    }
+    end
 
     def venderPropiedad( numeroCasilla)
 
@@ -171,12 +171,13 @@ module ModeloQytetet
 
     end
 
-    def inicializarJugadores(ArrayList<String> nombres)
+    def inicializarJugadores(nombres)
 
-        for( i=0;i<nombres.size();i++)
+        nombres.each do |n|
 
-            Jugador j = new Jugador(nombres.get(i));
-            jugadores.add(j);
+            j = Jugador.new(n)
+            jugadores << j
+        end
 
     end
 
