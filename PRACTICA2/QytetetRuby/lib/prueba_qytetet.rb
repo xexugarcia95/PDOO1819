@@ -11,12 +11,9 @@ module ModeloQytetet
     @@juego = Qytetet.instance
     
     def main
-      nombres = Array.new
-      nombres << "Jugador1"
-      nombres << "Jugador2"
+
      # @@juego.inicializar_juego(nombres)
-      puts "Tablero\n"
-      puts(@@juego)
+      puts @@juego.to_s
       #puts "Mazo\n"
       #puts(@@juego.mazo)
       #puts(metodo_1)

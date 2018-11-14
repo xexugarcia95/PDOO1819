@@ -3,6 +3,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require_relative 'titulo_propiedad.rb'
+
 module ModeloQytetet
   class Jugador
     
@@ -120,6 +122,11 @@ module ModeloQytetet
     def venderPropiedad(casilla)
     
         raise NotImplementedError
+    end
+    
+    def to_s
+      puts "Nombre: #{@nombre} \n Encarcelado: #{@encarcelado} \n Saldo: #{@saldo} \n CartaLib: #{@cartaLibertad} \n CasillaAct: #{@casillaActual} \n Propiedades: #{@propiedades} \n"
+
     end
     
   end
