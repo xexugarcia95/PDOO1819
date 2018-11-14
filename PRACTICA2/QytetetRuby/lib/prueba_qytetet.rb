@@ -8,22 +8,24 @@ require_relative "tablero.rb"
 
 module ModeloQytetet
   class PruebaQytetet
-    @@juego = Qytetet.new
+    @@juego = Qytetet.instance
     
     def main
-      
-      @@juego.inicializar_cartas_sorpresa
+      nombres = Array.new
+      nombres << "Jugador1"
+      nombres << "Jugador2"
+     # @@juego.inicializar_juego(nombres)
       puts "Tablero\n"
-      puts(@@juego.tablero)
-      puts "Mazo\n"
-      puts(@@juego.mazo)
-      puts(metodo_1)
-      puts(metodo_2)
-      arr = Array.new(TipoSorpresa::constants)
-      arr.each do |tipos|
+      puts(@@juego)
+      #puts "Mazo\n"
+      #puts(@@juego.mazo)
+      #puts(metodo_1)
+       #puts(metodo_2)
+      #arr = Array.new(TipoSorpresa::constants)
+      #arr.each do |tipos|
         #puts metodo_3(tipos)
-        puts metodo_3(TipoSorpresa.const_get(tipos))
-      end
+       # puts metodo_3(TipoSorpresa.const_get(tipos))
+      #end
       
     end
     

@@ -12,7 +12,7 @@ module ModeloQytetet
   class Tablero
     @casillas
     @carcel
-    @@num_casillas
+    @@num_casillas = 0
     def initialize
       inicializar
     end

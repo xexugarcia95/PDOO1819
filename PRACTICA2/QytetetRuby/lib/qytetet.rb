@@ -4,6 +4,7 @@
 # and open the template in the editor.
 
 require_relative "sorpresa.rb"
+require_relative "tablero.rb"
 require "singleton"
 
 module ModeloQytetet
@@ -17,7 +18,8 @@ module ModeloQytetet
     @tablero
 
     def self.instance
-      return @instance
+       
+      return @@instance
     end
 
     def inicializar_cartas_sorpresa
@@ -83,9 +85,10 @@ module ModeloQytetet
 
 
     def inicializarJuego(nombres)
-
-        inicializarJugadores(nombres);
-        inicializarCartasSorpresa();
+        inicializarCartasSorpresa
+        inicializarTablero
+        inicializarJugadores(nombres)
+        
     end
 
 
@@ -147,20 +150,22 @@ module ModeloQytetet
         raise NotImplementedError
     end
 
-    def venderPropiedad( numeroCasilla)
+    def venderPropiedad(numeroCasilla)
 
         raise NotImplementedError
     end
-
-    private
-
-    def initialize()
+    
+    def initialize
       nombres = Array.new
       nombres<<"Jugador 1"
       nombres<<"Jugador 2"
       inicializarJuego(nombres)
 
     end
+
+    private
+
+    
 
     def inicializar_tablero
       @tablero = Tablero.new
@@ -183,8 +188,15 @@ module ModeloQytetet
 
     def salidaJugadores
 
-
     end
+    
+    public
+    
+    def to_s
+      puts "Tablero: #{@tablero} \n Mazo: #{@mazo}"
+    end
+    
+    private_class_method :new
 
   end
 end
