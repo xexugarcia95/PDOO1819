@@ -7,6 +7,7 @@
 package modeloqytetet;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -27,6 +28,7 @@ public class Qytetet {
     private Jugador jugadorActual;
     private ArrayList<Jugador> jugadores = new ArrayList<>();
     private Dado dado;
+    private EstadoJuego estado;
     private static final Scanner in= new Scanner(System.in);
     
     private Qytetet()
@@ -160,12 +162,25 @@ public class Qytetet {
     
     private void salidaJugadores()
     {
-        
+        for(int i=0;i<jugadores.size();i++) jugadores.get(i).setCasillaActual(tablero.obtenerCasillaNumero(0));
+        Random r = new Random();
+        int numero = r.nextInt(1);
+        jugadorActual = jugadores.get(numero);
+        estado = EstadoJuego.JA_PREPARADO;
     }
     
     public void siguienteJugador()
     {
+        int mod = 0;
+        boolean encontrado = false;
+        for(int i=0;i<jugadores.size() && !encontrado;i++)
+        {
+            if(jugadores.get(i)==jugadorActual) mod = (i+1)%jugadores.size(); encontrado = true;
+        }
         
+        jugadorActual = jugadores.get(mod);
+        if(jugadorActual.isEncarcelado()) estado = EstadoJuego.JA_ENCARCELADOCONOPCIONDELIBERTAD;
+        else estado = EstadoJuego.JA_PREPARADO;
     }
     
     int tirarDado()

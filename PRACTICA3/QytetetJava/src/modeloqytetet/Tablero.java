@@ -50,17 +50,26 @@ public class Tablero {
     
     boolean esCasillaCarcel(int numeroCasilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return (numeroCasilla == carcel.getNumeroCasilla());
     }
     
     Casilla obtenerCasillaFinal(Casilla casilla, int desplazamiento)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean encontrado = false;
+        int valor = 0;
+        for(int i=0;i<casillas.size() && !encontrado;i++)
+        {
+            if(casillas.get(i)==casilla) encontrado = true; valor = i;
+            if(i==casillas.size()-1 && !encontrado) i = 0 ;
+        }
+        
+        valor = (valor+desplazamiento)%casillas.size();
+        return casillas.get(valor);
     }
     
     Casilla obtenerCasillaNumero(int numeroCasilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return casillas.get(numeroCasilla);
     }
 
     ArrayList<Casilla> getCasillas() {

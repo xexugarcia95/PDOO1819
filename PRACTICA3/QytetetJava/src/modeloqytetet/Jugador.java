@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author jesus
  */
-public class Jugador {
+public class Jugador implements Comparable {
     private boolean encarcelado;
     private String nombre;
     private int saldo;
@@ -26,7 +26,13 @@ public class Jugador {
         
     }
     
-    
+    @Override
+    public int compareTo(Object otroJugador)
+    {
+        int otroCapital = ((Jugador) otroJugador).obtenerCapital();
+        return otroCapital - obtenerCapital();
+    }
+       
     
     boolean cancelarHipoteca(TituloPropiedad titulo)
     {
@@ -40,7 +46,14 @@ public class Jugador {
     
     int cuantasCasasHotelesTengo()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int numero = 0;
+        for(int i=0;i<propiedades.size();i++)
+        {
+            numero+=propiedades.get(i).getNumCasas();
+            numero+=propiedades.get(i).getNumHoteles();
+        }
+        
+        return numero;
     }
     
     boolean deboPagarAlquiler()
@@ -50,7 +63,9 @@ public class Jugador {
     
     Sorpresa devolverCartaLibertad()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        Sorpresa s = cartaLibertad;
+        cartaLibertad = null;
+        return s;
     }
     
     boolean edificarCasa(TituloPropiedad titulo)
@@ -70,7 +85,13 @@ public class Jugador {
     
     private boolean esDeMiPropiedad(TituloPropiedad titulo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean encontrado = false;
+        for(int i=0;i<propiedades.size() && !encontrado;i++)
+        {
+            if(propiedades.get(i)==titulo) encontrado = true;
+        }
+        
+        return encontrado;
     }
     
     boolean estoyEnCalleLibre()
@@ -90,12 +111,23 @@ public class Jugador {
     
     int modificarSaldo(int cantidad)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int nuevo = saldo + cantidad;
+        return nuevo;
     }
     
     int obtenerCapital()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int propiedadesTotal = 0;
+        for(int i=0;i<propiedades.size();i++)
+        {
+            int prEd = propiedades.get(i).getPrecioEdificar();
+            int numCH = propiedades.get(i).getNumCasas() + propiedades.get(i).getNumHoteles();
+            propiedadesTotal+=propiedades.get(i).getPrecioCompra()+(numCH*prEd);
+            if(propiedades.get(i).isHipotecada()) propiedadesTotal-= propiedades.get(i).getHipotecaBase();
+        }
+        
+       propiedadesTotal+=saldo;
+        return propiedadesTotal;
     }
     
     ArrayList<TituloPropiedad> obtenerPropiedades(boolean hipotecada)
@@ -110,7 +142,7 @@ public class Jugador {
     
     void pagarImpuesto()
     {
-        
+        saldo-=casillaActual.getCoste();
     }
     
     void pagarLibertad(int cantidad)
@@ -120,12 +152,12 @@ public class Jugador {
     
     boolean tengoCartaLibertad()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return (cartaLibertad!=null);
     }
     
     private boolean tengoSaldo(int cantidad)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return(saldo>cantidad);
     }
     
     boolean venderPropiedad(Casilla casilla)
@@ -174,7 +206,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Jugador{" + "encarcelado=" + encarcelado + ", nombre=" + nombre + ", saldo=" + saldo + ", cartaLibertad=" + cartaLibertad + ", casillaActual=" + casillaActual + ", propiedades=" + propiedades + '}';
+        return "Jugador{" + "encarcelado=" + encarcelado + ", nombre=" + nombre + ", saldo=" + saldo + ", capital=" + obtenerCapital() + ", cartaLibertad=" + cartaLibertad + ", casillaActual=" + casillaActual + ", propiedades=" + propiedades + '}';
     }
 
     
