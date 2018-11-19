@@ -41,7 +41,16 @@ public class Jugador implements Comparable {
     
     boolean comprarTituloPropiedad()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeCompra = casillaActual.getCoste();
+        boolean comprado= false;
+        if(costeCompra<saldo)
+        {
+            TituloPropiedad titulo = casillaActual.asignarPropietario(this);
+            propiedades.add(titulo);
+            modificarSaldo(-costeCompra);
+            comprado = true;
+        }
+        return comprado;
     }
     
     int cuantasCasasHotelesTengo()
