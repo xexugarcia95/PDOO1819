@@ -126,12 +126,12 @@ public class TituloPropiedad {
     
     boolean propietarioEncarcelado()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return propietario.isEncarcelado();
     }
     
     boolean tengoPropietario()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return (propietario!=null);
     }
 
     Jugador getPropietario() {

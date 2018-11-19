@@ -92,7 +92,7 @@ public class Qytetet {
 
     public int getValorDado()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return dado.getValor();
     }
     
     public void hipotecarPropiedad(int numeroCasilla)
@@ -122,7 +122,9 @@ public class Qytetet {
     
     public void jugar()
     {
-        
+        int i =tirarDado();
+        Casilla casillaActual= tablero.obtenerCasillaFinal(jugadorActual.getCasillaActual(), i);
+        mover(casillaActual.getNumeroCasilla());
     }
     
     void mover(int numCasillaDestino)
@@ -142,22 +144,68 @@ public class Qytetet {
     
     public ArrayList<Integer> obtenerPropiedadesJugador()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        ArrayList<Integer> numPropiedades = new ArrayList<>();
+        for(int i=0;i<jugadorActual.getPropiedades().size();i++)
+        {
+            boolean encontrado = false;
+            for(int j=0;j<tablero.getCasillas().size() && !encontrado;j++)
+            {
+                if(jugadorActual.getPropiedades().get(i)==tablero.getCasillas().get(j).getTitulo())
+                {
+                    numPropiedades.add(tablero.getCasillas().get(j).getNumeroCasilla());
+                    encontrado = true;
+                }
+            }
+                
+        }
+        return numPropiedades;
     }
     
     public ArrayList<Integer> obtenerPropiedadesJugadorSegunEstadoHipoteca(boolean estadoHipoteca)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        ArrayList<Integer> numPropiedades = new ArrayList<>();
+        for(int i=0;i<jugadorActual.getPropiedades().size();i++)
+        {
+            boolean encontrado = false;
+            for(int j=0;j<tablero.getCasillas().size() && !encontrado;j++)
+            {
+                if(jugadorActual.getPropiedades().get(i)==tablero.getCasillas().get(j).getTitulo() 
+                        && jugadorActual.getPropiedades().get(j).isHipotecada() == estadoHipoteca)
+                {
+                    numPropiedades.add(tablero.getCasillas().get(j).getNumeroCasilla());
+                    encontrado = true;
+                }
+            }
+                
+        }
+        return numPropiedades;
     }
     
     public void obtenerRanking()
     {
+        ArrayList<Jugador> posiciones = jugadores;
+        for(int i=0;i<posiciones.size();i++)
+        {
+            for(int j=i+1;j<posiciones.size()-1;j++)
+            {
+                if(posiciones.get(i).compareTo(posiciones.get(j))<=0)
+                {
+                    Jugador aux = posiciones.get(j);
+                    posiciones.set(j,posiciones.get(i));
+                    posiciones.set(i,aux);
+                }
+            }
+        }
         
+        for(int i=0;i<posiciones.size();i++)
+        {
+            System.out.println("Posicion " + i+1 + ": " + posiciones.get(i));
+        }
     }
     
     public int obtenerSaldoJugadorActual()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return jugadorActual.getSaldo();
     }
     
     private void salidaJugadores()
@@ -185,7 +233,7 @@ public class Qytetet {
     
     int tirarDado()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return dado.tirar();
     }
     
     public boolean venderPropiedad(int numeroCasilla)

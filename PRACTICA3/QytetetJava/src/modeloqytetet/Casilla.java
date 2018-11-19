@@ -42,17 +42,17 @@ public class Casilla {
     
     boolean PropietarioEncarcelado()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return titulo.propietarioEncarcelado();
     }
     
     boolean soyEdificable()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return (tipo == TipoCasilla.CALLE);
     }
     
     boolean tengoPropietario()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return titulo.tengoPropietario();
     }
 
     int getNumeroCasilla() {

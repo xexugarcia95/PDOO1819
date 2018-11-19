@@ -5,6 +5,8 @@
  */
 package modeloqytetet;
 
+import java.util.Random;
+
 /**
  *
  * @author Jesus Manuel Garcia Palma
@@ -21,7 +23,9 @@ public class Dado {
     
     int tirar()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        Random r = new Random();
+        int val = r.nextInt(5)+1;
+        return val;
     }
     
     public static Dado getInstance()
