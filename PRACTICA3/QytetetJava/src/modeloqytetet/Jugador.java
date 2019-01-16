@@ -36,7 +36,15 @@ public class Jugador implements Comparable {
     
     boolean cancelarHipoteca(TituloPropiedad titulo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int calcularCosteCancelar = titulo.calcularCosteCancelar();
+        boolean cancelar = (saldo > calcularCosteCancelar);
+        if(cancelar)
+        {
+            modificarSaldo(-calcularCosteCancelar);
+            titulo.setHipotecada(false);
+        }
+        
+        return cancelar;
     }
     
     boolean comprarTituloPropiedad()
@@ -175,15 +183,14 @@ public class Jugador implements Comparable {
     int obtenerCapital()
     {
         int propiedadesTotal = 0;
-        for(int i=0;i<propiedades.size();i++)
-        {
-            int prEd = propiedades.get(i).getPrecioEdificar();
-            int numCH = propiedades.get(i).getNumCasas() + propiedades.get(i).getNumHoteles();
-            propiedadesTotal+=propiedades.get(i).getPrecioCompra()+(numCH*prEd);
-            if(propiedades.get(i).isHipotecada()) propiedadesTotal-= propiedades.get(i).getHipotecaBase();
+        for (TituloPropiedad propiedade : propiedades) {
+            int prEd = propiedade.getPrecioEdificar();
+            int numCH = propiedade.getNumCasas() + propiedade.getNumHoteles();
+            propiedadesTotal+=propiedade.getPrecioCompra()+(numCH*prEd);
+            if(propiedade.isHipotecada()) propiedadesTotal-= propiedade.getHipotecaBase();
         }
         
-       propiedadesTotal+=saldo;
+        propiedadesTotal+=saldo;
         return propiedadesTotal;
     }
     

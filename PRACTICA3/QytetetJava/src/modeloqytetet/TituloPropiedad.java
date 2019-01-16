@@ -36,7 +36,8 @@ public class TituloPropiedad {
     
     int calcularCosteCancelar()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeCancelar = (int) (calcularCosteHipotecar() + (0.1*calcularCosteHipotecar()));
+        return costeCancelar;
     }
     
     int calcularCosteHipotecar()

@@ -157,7 +157,11 @@ public class Qytetet {
     
     public boolean cancelarHipoteca(int numeroCasilla)
     {
-        
+        Casilla casilla = jugadorActual.getCasillaActual();
+        TituloPropiedad titulo = casilla.getTitulo();
+        boolean cancelar = jugadorActual.cancelarHipoteca(titulo);
+        setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
+        return cancelar;
     }
     
     public boolean comprarTituloPropiedad() 
@@ -216,7 +220,7 @@ public class Qytetet {
     {
         inicializarJugadores(nombres);
         inicializarCartasSorpresa();
-        salidaJugadores();
+//        salidaJugadores();
         
     }
     
