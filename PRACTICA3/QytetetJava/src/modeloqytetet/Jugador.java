@@ -67,7 +67,23 @@ public class Jugador implements Comparable {
     
     boolean deboPagarAlquiler()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        TituloPropiedad titulo = casillaActual.getTitulo();
+        boolean esDeMiPropiedad = esDeMiPropiedad(titulo);
+        boolean hipotecada = false;
+        if(!esDeMiPropiedad)
+        {            
+            boolean tienePropietario = titulo.tengoPropietario();
+            if(tienePropietario)
+            {
+                encarcelado = titulo.propietarioEncarcelado();
+                if(!encarcelado)
+                {
+                    hipotecada = titulo.isHipotecada();
+                }
+            }
+        }
+        
+        return hipotecada;
     }
     
     Sorpresa devolverCartaLibertad()
@@ -79,17 +95,46 @@ public class Jugador implements Comparable {
     
     boolean edificarCasa(TituloPropiedad titulo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int numCasas = titulo.getNumCasas();
+        boolean edificada = false;
+        if(numCasas<4)
+        {
+            int costeEdificarCasa = titulo.getPrecioEdificar();
+            boolean tengoSaldo = tengoSaldo(costeEdificarCasa);
+            if(tengoSaldo)
+            {
+                titulo.edificarCasa();
+                modificarSaldo(-costeEdificarCasa);
+                edificada = true;
+            }
+        }
+        return edificada;
     }
     
     boolean edificarHotel(TituloPropiedad titulo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int numCasas = titulo.getNumCasas();
+        boolean edificada = false;
+        if(numCasas==4)
+        {
+            int costeEdificarHotel = titulo.getPrecioEdificar();
+            boolean tengoSaldo = tengoSaldo(costeEdificarHotel);
+            if(tengoSaldo)
+            {
+                titulo.edificarHotel();
+                modificarSaldo(-costeEdificarHotel);
+                edificada = true;
+            }
+        }
+        return edificada;
     }
     
     private void eliminarDeMisPropiedades(TituloPropiedad titulo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        propiedades.remove(titulo);
+        titulo.setPropietario(null);
+        int precioVenta = titulo.calcularPrecioVenta();
+        modificarSaldo(precioVenta);
     }
     
     private boolean esDeMiPropiedad(TituloPropiedad titulo)
@@ -110,12 +155,15 @@ public class Jugador implements Comparable {
     
     boolean hipotecarPropiedad(TituloPropiedad titulo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeHipoteca = titulo.hipotecar();
+        modificarSaldo(costeHipoteca);
+        return titulo.isHipotecada();
     }
     
     void irACarcel(Casilla casilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        setCasillaActual(casilla);
+        setEncarcelado(true);
     }
     
     int modificarSaldo(int cantidad)
@@ -146,7 +194,8 @@ public class Jugador implements Comparable {
     
     void pagarAlquiler()
     {
-        
+        int costeAlquiler = casillaActual.pagarAlquiler();
+        modificarSaldo(-costeAlquiler);
     }
     
     void pagarImpuesto()
@@ -156,7 +205,12 @@ public class Jugador implements Comparable {
     
     void pagarLibertad(int cantidad)
     {
-        
+        boolean tengoSaldo = tengoSaldo(cantidad);
+        if(tengoSaldo)
+        {
+            setEncarcelado(false);
+            modificarSaldo(-cantidad);
+        }
     }
     
     boolean tengoCartaLibertad()
@@ -171,7 +225,10 @@ public class Jugador implements Comparable {
     
     boolean venderPropiedad(Casilla casilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        TituloPropiedad titulo = casilla.getTitulo();
+        eliminarDeMisPropiedades(titulo);
+        boolean esNoEs = esDeMiPropiedad(titulo);
+        return esNoEs;
     }
     
     
@@ -199,6 +256,11 @@ public class Jugador implements Comparable {
 
     ArrayList<TituloPropiedad> getPropiedades() {
         return propiedades;
+    }
+    
+    boolean getEncarcelado()
+    {
+        return encarcelado;
     }
 
     void setEncarcelado(boolean encarcelado) {

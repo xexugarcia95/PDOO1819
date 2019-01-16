@@ -41,17 +41,20 @@ public class TituloPropiedad {
     
     int calcularCosteHipotecar()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeHipoteca = (int) (hipotecaBase + numCasas * 0.5 * hipotecaBase +  numHoteles * hipotecaBase);
+        return costeHipoteca;
     }
     
     int calcularImporteAlquiler()
     {
-       throw new UnsupportedOperationException("Sin implementar"); 
+       int costeAlquiler = alquilerBase + (numCasas*5 + numHoteles*2);
+       return costeAlquiler;
     }
     
     int calcularPrecioVenta()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int precioVenta = (int) (precioCompra + (numCasas + numHoteles) * precioEdificar * factorRevalorizacion);
+        return precioVenta;
     }
     
     void cancelarHipoteca()
@@ -66,12 +69,12 @@ public class TituloPropiedad {
     
     void edificarCasa()
     {
-        
+        numCasas+=1;
     }
     
     void edificarHotel()
     {
-        
+        numHoteles+=1;
     }
 
     public String getNombre() {
@@ -116,12 +119,16 @@ public class TituloPropiedad {
     
     int hipotecar()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        setHipotecada(true);
+        int costeHipoteca = calcularCosteHipotecar();
+        return costeHipoteca;
     }
     
     int pagarAlquiler()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeAlquiler = calcularImporteAlquiler();
+        propietario.modificarSaldo(costeAlquiler);
+        return costeAlquiler;
     }
     
     boolean propietarioEncarcelado()
@@ -141,6 +148,8 @@ public class TituloPropiedad {
     void setPropietario(Jugador propietario) {
         this.propietario = propietario;
     }
+    
+    
     
     
 

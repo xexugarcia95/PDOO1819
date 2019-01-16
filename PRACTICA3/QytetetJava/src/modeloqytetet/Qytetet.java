@@ -157,7 +157,7 @@ public class Qytetet {
     
     public boolean cancelarHipoteca(int numeroCasilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        
     }
     
     public boolean comprarTituloPropiedad() 
@@ -170,17 +170,33 @@ public class Qytetet {
     
     public boolean edificarCasa(int numeroCasilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+       Casilla casilla = tablero.obtenerCasillaNumero(numeroCasilla);
+       TituloPropiedad titulo = casilla.getTitulo();
+       boolean edificada = jugadorActual.edificarCasa(titulo);
+       return edificada;
     }
     
     public boolean edificarHotel(int numeroCasilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        Casilla casilla = tablero.obtenerCasillaNumero(numeroCasilla);
+       TituloPropiedad titulo = casilla.getTitulo();
+       boolean edificada = jugadorActual.edificarHotel(titulo);
+       return edificada;
     }
     
     private void encarcelarJugador()
     {
-        
+        if(!jugadorActual.tengoCartaLibertad())
+        {
+            Casilla casillaCarcel = tablero.getCarcel();
+            jugadorActual.irACarcel(casillaCarcel);
+            setEstado(EstadoJuego.JA_ENCARCELADO);
+        }else
+        {
+            Sorpresa carta = jugadorActual.devolverCartaLibertad();
+            mazo.add(carta); //incluir al final
+            setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
+        }
     }
 
     public int getValorDado()
@@ -190,13 +206,18 @@ public class Qytetet {
     
     public void hipotecarPropiedad(int numeroCasilla)
     {
-        
+        Casilla casilla = tablero.obtenerCasillaNumero(numeroCasilla);
+        TituloPropiedad titulo = casilla.getTitulo();
+        jugadorActual.hipotecarPropiedad(titulo);
+        setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
     }
     
     public void inicializarJuego(ArrayList<String> nombres)
     {
         inicializarJugadores(nombres);
         inicializarCartasSorpresa();
+        salidaJugadores();
+        
     }
     
     private void inicializarJugadores(ArrayList<String> nombres)
@@ -210,7 +231,27 @@ public class Qytetet {
     
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        if(metodo==MetodoSalirCarcel.TIRANDODADO)
+        {
+            int resultado = tirarDado();
+            if(resultado>=5) jugadorActual.setEncarcelado(false);            
+        }else if(metodo==MetodoSalirCarcel.PAGANDOLIBERTAD)
+        {
+            jugadorActual.pagarLibertad(PRECIO_LIBERTAD);
+            
+        }
+        
+        boolean libre = jugadorActual.getEncarcelado();
+        
+        if(libre)
+        {
+            setEstado(EstadoJuego.JA_ENCARCELADO);
+        }else
+        {
+            setEstado(EstadoJuego.JA_PREPARADO);
+        }
+        
+        return libre;
     }
     
     public void jugar()
@@ -222,7 +263,22 @@ public class Qytetet {
     
     void mover(int numCasillaDestino)
     {
+        Casilla casillaInicial = jugadorActual.getCasillaActual();
+        Casilla casillaFinal = tablero.obtenerCasillaNumero(numCasillaDestino);
+        jugadorActual.setCasillaActual(casillaFinal);
         
+        if(numCasillaDestino<casillaInicial.getNumeroCasilla())
+        {
+            jugadorActual.modificarSaldo(SALDO_SALIDA);
+        }
+        
+        if(casillaFinal.soyEdificable())
+        {
+            actuarSiEnCasillaEdificable();
+        }else
+        {
+            actuarSiEnCasillaNoEdificable();
+        }
     }
     
     public Casilla obtenerCasillaJugadorActual()
@@ -343,7 +399,11 @@ public class Qytetet {
     
     public boolean venderPropiedad(int numeroCasilla)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        Casilla casilla = tablero.obtenerCasillaNumero(numeroCasilla);
+        boolean puedeVender = jugadorActual.venderPropiedad(casilla);
+        if(puedeVender) setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
+        return puedeVender;
+        
     }
     
     
