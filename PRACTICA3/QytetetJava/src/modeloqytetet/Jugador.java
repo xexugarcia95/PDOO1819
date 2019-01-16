@@ -23,6 +23,7 @@ public class Jugador implements Comparable {
         this.nombre = nombre;
         this.encarcelado = false;
         this.saldo = 7500;
+        this.propiedades = new ArrayList<>();
         
     }
     
@@ -182,18 +183,14 @@ public class Jugador implements Comparable {
     
     int obtenerCapital()
     {
-        int propiedadesTotal = 0;
-        int prEd;
-        int numCH;
-        for(int i=0;i<propiedades.size();i++) {
-             prEd = propiedades.get(i).getPrecioEdificar();
-             numCH = propiedades.get(i).getNumCasas() + propiedades.get(i).getNumHoteles();
-             propiedadesTotal+=propiedades.get(i).getPrecioCompra()+(numCH*prEd);
-             if(propiedades.get(i).isHipotecada()) propiedadesTotal-= propiedades.get(i).getHipotecaBase();
+        int capital = saldo;
+        for(TituloPropiedad propiedad : propiedades)
+        {
+            capital+=propiedad.getPrecioCompra() + (propiedad.getNumCasas()+propiedad.getNumHoteles())*propiedad.getPrecioEdificar();
+            if(propiedad.isHipotecada()) capital-=propiedad.getHipotecaBase();
         }
         
-        propiedadesTotal+=saldo;
-        return propiedadesTotal;
+        return capital;
     }
     
     ArrayList<TituloPropiedad> obtenerPropiedades(boolean hipotecada)
