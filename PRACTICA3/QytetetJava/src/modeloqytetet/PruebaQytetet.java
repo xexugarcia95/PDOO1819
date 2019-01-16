@@ -31,9 +31,7 @@ public class PruebaQytetet {
           System.out.println(prueba.metodo3(tipo)); 
        }
        */
-       System.out.println(juego.toString(
-       
-       ));
+       System.out.println(juego);
     }
     
     private ArrayList<Sorpresa> metodo1() //sorpresas cuyo valor es mayor a 0
