@@ -452,11 +452,16 @@ public class Qytetet {
         return cartaActual;
     }
 
-    Jugador getJugadorActual() {
+    private Jugador getJugadorActual() {
         return jugadorActual;
     }
+    
+    public String getNombreJugadorActual()
+    {
+        return jugadorActual.getNombre();
+    }
 
-    ArrayList<Jugador> getJugadores() {
+    public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
 
