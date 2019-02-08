@@ -45,17 +45,30 @@ module ModeloQytetet
     
     end
     
-     def esCasillaCarcel(numeroCasilla)
+     def es_casilla_carcel(numero_casilla)
     
-        raise NotImplementedError
+        return (numero_casilla == carcel.numero_casilla);
      end
     
-     def obtenerCasillaFinal(casilla,desplazamiento)
+     def obtener_casilla_final(casilla,desplazamiento)
     
-        raise NotImplementedError
+         encontrado = false
+         valor = 0
+        for cas in @casilla && !encontrado do
+        
+            if(cas==casilla) 
+              encontrado = true
+              valor = cas.numero_casilla
+            end
+            
+        end
+     
+        
+        valor = (valor+desplazamiento)%@casillas.size
+        #return @casillas
      end
     
-     def obtenerCasillaNumero(numeroCasilla)
+     def obtener_casilla_numero(numero_casilla)
      
         raise NotImplementedError
      end

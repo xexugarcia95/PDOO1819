@@ -21,44 +21,48 @@ module ModeloQytetet
       @num_hoteles = 0
       @propietario = nil
     end
+   
+    def calcular_coste_cancelar
     
-    def calcularCosteCancelar
-    
-        raise NotImplementedError
+        coste_cancelar = calcular_coste_hipotecar + (0.1*calcular_coste_hipotecar)
+        return coste_cancelar
     end
     
-    def calcularCosteHipotecar
+    def calcular_coste_hipotecar
     
-        raise NotImplementedError
+        coste_hipoteca = (@hipoteca_base + @num_casas *0.5*@hipoteca_base + @num_hoteles * @hipoteca_base)
+        return coste_hipoteca
     end
     
-    def calcularImporteAlquiler
+    def calcular_importe_alquiler
     
-       raise NotImplementedError 
+        coste_alquiler = @alquiler_base + (@num_casas*5 + @num_hoteles*2)
+        return coste_alquiler
     end
     
-    def calcularPrecioVenta
+    def calcular_precio_venta
     
-        raise NotImplementedError
+         precio_venta =  (@precio_compra + (@num_casas + @num_hoteles) * @precio_edificar * @factor_revalorizacion)
+        return precio_venta
     end
     
-    def cancelarHipoteca
+    def cancelar_hipoteca
     
     end    
     
     
-     def cobrarAlquiler(coste)
+     def cobrar_alquiler(coste)
     
      end
     
     
-    def edificarCasa
-    
+    def edificar_casa
+      @num_casas = @num_casas +1
     end   
     
     
-    def edificarHotel
-    
+    def edificar_hotel
+      @num_hoteles = @num_hoteles + 1
     end   
     
     
