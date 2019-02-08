@@ -47,7 +47,7 @@ module ModeloQytetet
     
      def es_casilla_carcel(numero_casilla)
     
-        return (numero_casilla == carcel.numero_casilla);
+        return (numero_casilla == @carcel.numero_casilla);
      end
     
      def obtener_casilla_final(casilla,desplazamiento)
@@ -65,12 +65,12 @@ module ModeloQytetet
      
         
         valor = (valor+desplazamiento)%@casillas.size
-        #return @casillas
+        return @casillas[valor]
      end
     
      def obtener_casilla_numero(numero_casilla)
      
-        raise NotImplementedError
+        return @casillas[numero_casilla].numero_casilla
      end
     
     def to_s

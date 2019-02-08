@@ -26,27 +26,27 @@ module ModeloQytetet
       end
     end
     
-    def asignarPropietario(jugador)
+    def asignar_propietario(jugador)
     
         raise NotImplementedError
     end
     
-    def pagarAlquiler
+    def pagar_alquiler
     
         raise NotImplementedError
     end
     
-    def PropietarioEncarcelado
+    def propietario_encarcelado
     
         raise NotImplementedError
     end
     
-    def soyEdificable
+    def soy_edificable
     
         raise NotImplementedError
     end
     
-    def tengoPropietario
+    def tengo_propietario
     
         raise NotImplementedError
     end

@@ -14,112 +14,112 @@ module ModeloQytetet
       @nombre = nombre;
       @encarcelado = false
       @saldo = 7500
-      @cartaLibertad = nil
-      @casillaActual = nil
+      @carta_libertad = nil
+      @casilla_actual = nil
       @propiedades = nil
     end
     
-    def cancelarHipoteca(titulo)
+    def cancelar_hipoteca(titulo)
     
         raise NotImplementedError
     end
     
-    def comprarTituloPropiedad
+    def comprar_titulo_propiedad
     
         raise NotImplementedError
     end
     
-    def cuantasCasasHotelesTengo
+    def cuantas_casas_hoteles_tengo
     
         raise NotImplementedError
     end
     
-    def deboPagarAlquiler
+    def debo_pagar_alquiler
     
         raise NotImplementedError
     end
     
-    def devolverCartaLibertad
+    def devolver_carta_libertad
     
         raise NotImplementedError
     end
     
-    def edificarCasa(titulo)
+    def edificar_casa(titulo)
     
         raise NotImplementedError
     end
     
-    def edificarHotel(titulo)
+    def edificar_hotel(titulo)
     
         raise NotImplementedError
     end
     
-    def eliminarDeMisPropiedades(titulo)
+    def eliminar_de_mis_propiedades(titulo)
     
         raise NotImplementedError
     end
     
-    def esDeMiPropiedad(titulo)
+    def es_de_mi_propiedad(titulo)
     
         raise NotImplementedError
     end
     
-    def estoyEnCalleLibre
+    def estoy_en_calle_libre
     
         raise NotImplementedError
     end
     
-    def hipotecarPropiedad(titulo)
+    def hipotecar_propiedad(titulo)
     
         raise NotImplementedError
     end
     
-    def irACarcel(casilla)
+    def ir_a_carcel(casilla)
     
         raise NotImplementedError
     end
     
-    def modificarSaldo(cantidad)
+    def modificar_saldo(cantidad)
     
         raise NotImplementedError
     end
     
-    def obtenerCapital
+    def obtener_capital
     
         raise NotImplementedError
     end
     
-    def obtenerPropiedades(hipotecada)
+    def obtener_propiedades(hipotecada)
     
         raise NotImplementedError
     end
     
-    def pagarAlquiler
+    def pagar_alquiler
     
         
     end
     
-    def pagarImpuesto
+    def pagar_impuesto
     
         
     end
     
-    def pagarLibertad(cantidad)
+    def pagar_libertad(cantidad)
     
         
     end
     
-    def tengoCartaLibertad()
+    def tengo_carta_libertad
     
         raise NotImplementedError
     end
     
-    def tengoSaldo(cantidad)
+    def tengo_saldo(cantidad)
     
         raise NotImplementedError
     end
     
-    def venderPropiedad(casilla)
+    def vender_propiedad(casilla)
     
         raise NotImplementedError
     end
