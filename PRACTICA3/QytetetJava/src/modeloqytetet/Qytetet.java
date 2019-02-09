@@ -157,7 +157,7 @@ public class Qytetet {
     
     public boolean cancelarHipoteca(int numeroCasilla)
     {
-        Casilla casilla = jugadorActual.getCasillaActual();
+        Casilla casilla = tablero.getCasillas().get(numeroCasilla);
         TituloPropiedad titulo = casilla.getTitulo();
         boolean cancelar = jugadorActual.cancelarHipoteca(titulo);
         setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
@@ -287,12 +287,12 @@ public class Qytetet {
     
     public Casilla obtenerCasillaJugadorActual()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return jugadorActual.getCasillaActual();
     }
     
     public ArrayList<Casilla> obtenerCasillasTablero()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        return tablero.getCasillas();
     }
     
     public ArrayList<Integer> obtenerPropiedadesJugador()

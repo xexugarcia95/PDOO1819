@@ -19,34 +19,103 @@ module ModeloQytetet
       @propiedades = nil
     end
     
+    def <=>(otro_jugador)
+      otro_capital = otro_jugador.obtener_capital
+      mi_capital=obtener_capital
+      if(otro_capital>mi_capital)
+        return 1 
+      end
+      if(otro_capital<mi_capital)
+        return -1
+      end
+      
+      return 0
+    end
+    
     def cancelar_hipoteca(titulo)
     
-        raise NotImplementedError
+        calcular_coste_cancelar = titulo.calcular_coste_cancelar
+        cancelar = (@saldo > calcular_coste_cancelar)
+        if(cancelar)
+        
+            modificar_saldo(-calcular_coste_cancelar);
+            titulo.hipotecada = false
+        end
+        
+        return cancelar
     end
     
     def comprar_titulo_propiedad
     
-        raise NotImplementedError
+        coste_compra = @casilla_actual.coste
+        comprado= false
+        if(coste_compra<@saldo)
+        
+            titulo = @casilla_actual.asignar_propietario(this)
+            @propiedades << titulo
+            modificar_saldo(-coste_compra)
+            comprado = true
+        end
+        return comprado
     end
     
     def cuantas_casas_hoteles_tengo
     
-        raise NotImplementedError
+        numero = 0
+        for i in 0..@propiedades.size
+        
+            numero+=@propiedades[i].num_casas
+            numero+=@propiedades[i].num_hoteles
+        end
+        
+        return numero
     end
     
     def debo_pagar_alquiler
     
-        raise NotImplementedError
+        titulo = @casilla_actual.titulo
+        es_de_mi_propiedad = es_de_mi_propiedad(titulo)
+        hipotecada = false
+        
+        if(!es_de_mi_propiedad)
+                    
+            tiene_propietario = titulo.tengo_propietario
+            if(tiene_propietario)
+            
+                @encarcelado = titulo.propietario_encarcelado
+                if(!@encarcelado)
+                
+                    hipotecada = titulo.is_hipotecada
+                end
+            end
+        end
+        
+        return hipotecada
     end
     
     def devolver_carta_libertad
     
-        raise NotImplementedError
+        s = @carta_libertad
+        @carta_libertad = null
+        return s
     end
     
     def edificar_casa(titulo)
     
-        raise NotImplementedError
+        num_casas = titulo.numero_casas
+        edificada = false
+        if(num_casas<4)
+        
+            coste_edificar_casa = titulo.precio_edificar
+            tengo_saldo = tengo_saldo(coste_edificar_casa)
+            if(tengo_saldo)
+            
+                titulo.edificar_casa
+                modificar_saldo(-coste_edificar_casa);
+                edificada = true
+            end
+        end
+        return edificada
     end
     
     def edificar_hotel(titulo)

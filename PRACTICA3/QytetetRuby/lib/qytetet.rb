@@ -148,37 +148,51 @@ module ModeloQytetet
 
     def cancelar_hipoteca(numero_casilla)
 
-        casilla = @jugador_actual.casilla_actual
-        titulo = casilla.getTitulo();
-        cancelar = jugadorActual.cancelarHipoteca(titulo);
-        setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
-        return cancelar;
+        casilla = @tablero.casillas[numero_casilla]
+        titulo = casilla.titulo
+        cancelar = @jugador_actual.cancelar_hipoteca(titulo)
+        @estado=EstadoJuego::JA_PUEDEGESTIONAR
+        return cancelar
     end
 
     def comprar_titulo_propiedad
 
-        raise NotImplementedError
+        comprado = @jugador_actual.comprar_titulo_propiedad
+        if(comprado) 
+          @estado = EstadoJuego::JA_PUEDEGESTIONAR
+        end
+        
+        return comprado
     end
 
-    def edificar_casa(numeroCasilla)
+    def edificar_casa(numero_casilla)
 
-        raise NotImplementedError
+        casilla = @tablero.obtener_casilla_numero(numero_casilla)
+        titulo = casilla.titulo
+        edificada = @jugador_actual.edificar_casa(titulo)
+       return edificada
     end
 
-    def edificar_hotel(numeroCasilla)
+    def edificar_hotel(numero_casilla)
 
-        raise NotImplementedError
+       casilla = @tablero.obtener_casilla_numero(numero_casilla);
+       titulo = casilla.titulo
+       edificada = @jugador_actual.edificar_hotel(titulo)
+       return edificada
     end
 
 
 
     def get_valor_dado
 
-        raise NotImplementedError
+        return @dado.valor
     end
 
-    def hipotecar_propiedad(numeroCasilla)
-
+    def hipotecar_propiedad(numero_casilla)
+        casilla = @tablero.obtener_casilla_numero(numero_casilla);
+        titulo = casilla.titulo
+        @jugador_actual.hipotecar_propiedad(titulo)
+        @estado= EstadoJuego::JA_PUEDEGESTIONAR
     end
 
 
@@ -190,66 +204,193 @@ module ModeloQytetet
 
 
 
-    def entrar_salir_carcel(metodo)
+    def intentar_salir_carcel(metodo)
     
-        raise NotImplementedError
+        if(metodo == MetodoSalirCarcel::TIRANDODADO)
+        
+            resultado = tirar_dado
+            if(resultado>=5) 
+              @jugador_actual.encarcelado = false
+            end
+        elsif(metodo == MetodoSalirCarcel::PAGANDOLIBERTAD)
+        
+            @jugador_actual.pagar_libertad(@@precio_libertad)          
+        end
+        
+        libre = @jugador_actual.encarcelado
+        
+        if(libre)
+        
+            @estado = EstadoJuego.JA_ENCARCELADO
+        else
+        
+            @estadi = EstadoJuego.JA_PREPARADO
+        end
+        
+        return libre
     end
 
     def jugar
-
+        i =  tirar_dado
+        casilla_actual = @tablero.obtener_casilla_final(@jugadorActual.casilla_actual,i)
+        mover(casilla_actual.numero_casilla)
 
     end
 
     def mover(num_casilla_destino)
-      
+        casilla_inicial = @jugador_actual.casilla_actual
+        casilla_final = @tablero.obtener_casilla_numero(num_casilla_destino)
+        @jugador_actual.casilla_actual = casilla_final
+        
+        if(num_casilla_destino<casilla_inicial.numero_casilla)
+        
+            @jugador_actual.modificar_saldo(@@saldo_salida)
+        end
+        
+        if(casilla_final.soy_edificable)
+        
+            actuar_si_en_casilla_edificable
+        else
+        
+            actuar_si_en_casilla_no_edificable
+        end
 
     end
 
     def obtener_casilla_jugador_actual
 
-        raise NotImplementedError
+        return @jugador_actual.casilla_actual
     end
 
     def obtener_casillas_tablero
 
-        raise NotImplementedError
+        return @tablero.casillas
     end
 
     def obtener_propiedades_jugador
 
-        raise NotImplementedError
+        num_propiedades = Array.new
+        for i in 0..@jugador_actual.propiedades.size
+        
+            encontrado = false
+            for j in 0..@tablero.casillas.size && !encontrado
+            
+                if(@jugador_actual.propiedades[i]==@tablero.casillas[i].titulo)
+                
+                    num_propiedades << @tablero.casillas[j].numero_casilla
+                    encontrado = true;
+                end
+            end
+                
+        end
+        return numPropiedades
     end
 
     def obtener_propiedades_jugador_segun_estado_hipoteca(estado_hipoteca)
 
-        raise NotImplementedError
+        num_propiedades = Array.new
+        for i in 0..@jugador_actual.propiedades.size
+        
+            encontrado = false
+            for j in 0..@tablero.casillas.size && !encontrado
+            
+                if(@jugador_actual.propiedades[i]==@tablero.casillas[j].titulo && @jugador_actual.propiedades[j].is_hipotecada == estado_hipoteca)
+                
+                    num_propiedades << @tablero.casillas[j].numero_casilla
+                    encontrado = true
+                end
+            end
+                
+        end
+        return num_propiedades
     end
 
     def obtener_ranking
-
+      posiciones = @jugadores
+        for i in 0..posiciones.size
+        
+            for j in i+1..@posiciones.size-1
+            
+                if(posiciones[i].<=>(posiciones[j])<=0)
+                
+                    aux = posiciones[j]
+                    posiciones[j] = posiciones[i]
+                    posiciones[i] = aux
+                end
+            end
+        end
+        
+        for i in 0..@posiciones.size
+            puts ("Posicion " + i+1 + ": " + @posiciones[i])
+        end
 
     end
 
     def  obtener_saldo_jugador_actual
 
-        raise NotImplementedError
+        return @jugador_actual.saldo
     end
 
 
 
     def siguiente_jugador
+        mod = 0
+        encontrado = false
+        for i in 0..@jugadores.size && !encontrado
+       
+            if(jugadores[i]==@jugador_actual) 
+              mod = (i+1)%@jugadores.size 
+              encontrado = true;
+            end
+        end
+        
+        @jugador_actual = @jugadores[mod]
+        if(@jugador_actual.is_encarcelado)
+          @stado = EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD
+        else 
+          @estado = EstadoJuego::JA_PREPARADO
+        end
 
-
+    end
+    
+    def siguiente
+        mod = 0;
+        encontrado = false
+        for i in 0..@jugadores.size && !encontrado
+        
+            if(@jugadores[i]==@jugador_actual) 
+              mod = (i+1)%@jugadores.size 
+              encontrado = true
+            end
+        end
+        return @jugadores[mod]
     end
 
     def tirar_dado
     
-        raise NotImplementedError
+        @dado.tirar
     end
 
     def vender_propiedad(numero_casilla)
 
-        raise NotImplementedError
+        casilla = @tablero.obtener_casilla_numero(numero_casilla)
+        puede_vender = @jugador_actual.vender_propiedad(casilla)
+        if(puede_vender) 
+          @estado = EstadoJuego::JA_PUEDEGESTIONAR
+        end
+        return puede_vender
+    end
+    
+    def nombre_jugadores
+      array = Array.new
+        jugadores.each do |j|
+        
+            puts(j.nombre)
+            array << j.nombre
+            
+        end
+        
+        return array
     end
     
     def initialize
@@ -282,7 +423,17 @@ module ModeloQytetet
     end
 
     def encarcelar_jugador
-
+      if(!@jugador_actual.tengo_carta_libertad)
+        
+            casilla_carcel = @tablero.carcel
+            @jugador_actual.ir_a_carcel(casilla_carcel)
+            @estado = EstadoJuego.JA_ENCARCELADO
+       else
+        
+            carta = @jugador_actual.devolver_carta_libertad
+            @mazo << carta 
+            @estado= EstadoJuego.JA_PUEDEGESTIONAR
+      end
 
     end
 
@@ -298,7 +449,13 @@ module ModeloQytetet
     end
 
     def salida_jugadores
-
+      for i in 0..@jugadores.size 
+        @jugadores[i].casilla_actual = @tablero.obtener_casilla_numero(0)
+      end
+        r = Random.new
+        numero = r.rand(0...1)
+        @jugador_actual = @jugadores[numero]
+        @estado = EstadoJuego::JA_PREPARADO
     end
     
 
