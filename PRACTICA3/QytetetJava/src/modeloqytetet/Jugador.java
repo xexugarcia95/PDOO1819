@@ -42,7 +42,7 @@ public class Jugador implements Comparable {
         if(cancelar)
         {
             modificarSaldo(-calcularCosteCancelar);
-            titulo.setHipotecada(false);
+            titulo.cancelarHipoteca();
         }
         
         return cancelar;

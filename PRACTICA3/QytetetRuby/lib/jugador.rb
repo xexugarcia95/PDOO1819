@@ -120,17 +120,40 @@ module ModeloQytetet
     
     def edificar_hotel(titulo)
     
-        raise NotImplementedError
+        num_casas = titulo.num_casas
+        edificada = false
+        if(num_casas==4)
+        
+            coste_edificar_hotel = titulo.precio_edificar
+            tengo_saldo = tengo_saldo(coste_edificar_hotel)
+            if(tengo_saldo)
+            
+                titulo.edificar_hotel
+                modificar_saldo(-coste_edificar_hotel)
+                edificada = true
+            end
+        end
+        return edificada
     end
     
     def eliminar_de_mis_propiedades(titulo)
     
-        raise NotImplementedError
+        propiedades.delete(titulo)
+        titulo.propietario = null
+        precio_venta = titulo.calcular_precio_venta
+        modificar_saldo(precio_venta)
     end
     
     def es_de_mi_propiedad(titulo)
     
-        raise NotImplementedError
+        encontrado = false
+        for i in 0..@propiedades.size && !encontrado
+        
+            if(@propiedades[i]==titulo) 
+              encontrado = true;
+            end
+        end
+        return encontrado
     end
     
     def estoy_en_calle_libre
@@ -140,22 +163,35 @@ module ModeloQytetet
     
     def hipotecar_propiedad(titulo)
     
-        raise NotImplementedError
+        coste_hipoteca = titulo.hipotecar
+        modificar_saldo(coste_hipoteca)
+        
+        return titulo.is_hipotecada
     end
     
     def ir_a_carcel(casilla)
     
-        raise NotImplementedError
+        @casilla_actual = casilla
+        @encarcelado = true
     end
     
     def modificar_saldo(cantidad)
     
-        raise NotImplementedError
+        nuevo = @saldo + cantidad;
+        return nuevo
     end
     
     def obtener_capital
     
-        raise NotImplementedError
+        capital = @saldo
+        @propiedades.each do |propiedad|
+        
+            capital+=propiedad.precio_compra + (propiedad.num_casas+propiedad.num_hoteles)*propiedad.precio_edificar
+            if(propiedad.is_hipotecada) 
+              capital-=propiedad.hipoteca_base
+            end
+        end
+        return capital
     end
     
     def obtener_propiedades(hipotecada)
@@ -164,33 +200,39 @@ module ModeloQytetet
     end
     
     def pagar_alquiler
-    
-        
+       coste_alquiler = @casilla_actual.pagar_alquiler
+       modificar_saldo(-coste_alquiler)      
     end
     
     def pagar_impuesto
-    
-        
+       @saldo-=@casilla_actual.coste       
     end
     
     def pagar_libertad(cantidad)
-    
+       tengo_saldo = tengo_saldo(cantidad)
+        if(tengo_saldo)
         
+            @encarcelado = false
+            modificar_saldo(-cantidad)
+        end  
     end
     
     def tengo_carta_libertad
     
-        raise NotImplementedError
+         return (@carta_libertad!=null)
     end
     
     def tengo_saldo(cantidad)
     
-        raise NotImplementedError
+        return(@saldo>cantidad)
     end
     
     def vender_propiedad(casilla)
     
-        raise NotImplementedError
+        titulo = casilla.titulo
+        eliminar_de_mis_propiedades(titulo)
+        es_no_es = es_de_mi_propiedad(titulo)
+        return es_no_es
     end
     
     def to_s

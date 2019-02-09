@@ -28,27 +28,30 @@ module ModeloQytetet
     
     def asignar_propietario(jugador)
     
-        raise NotImplementedError
+        @titulo.propietario = jugador
+        
+        return @titulo
     end
     
     def pagar_alquiler
     
-        raise NotImplementedError
+        coste_alquiler = @titulo.pagar_alquiler
+        return coste_alquiler
     end
     
     def propietario_encarcelado
     
-        raise NotImplementedError
+        return titulo.propietario_encarcelado
     end
     
     def soy_edificable
     
-        raise NotImplementedError
+        return (@tipo == TipoCasilla::CALLE)
     end
     
     def tengo_propietario
     
-        raise NotImplementedError
+        return @titulo.tengo_propietario
     end
 
     

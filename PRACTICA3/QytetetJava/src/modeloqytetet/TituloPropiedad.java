@@ -60,7 +60,7 @@ public class TituloPropiedad {
     
     void cancelarHipoteca()
     {
-        
+        hipotecada = false;
     }
     
     void cobrarAlquiler(int coste)

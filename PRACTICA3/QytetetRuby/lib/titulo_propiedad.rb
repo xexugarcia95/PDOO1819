@@ -47,7 +47,7 @@ module ModeloQytetet
     end
     
     def cancelar_hipoteca
-    
+      @hipotecada = false
     end    
     
     
