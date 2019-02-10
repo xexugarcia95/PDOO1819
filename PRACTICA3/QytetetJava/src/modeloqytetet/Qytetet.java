@@ -33,10 +33,10 @@ public class Qytetet {
     
     private Qytetet()
     {
-       ArrayList<String> nombres = new ArrayList();
+       /*ArrayList<String> nombres = new ArrayList();
        nombres.add("Jugador 1");
        nombres.add("Jugador 2");
-       inicializarJuego(nombres);
+       inicializarJuego(nombres);*/
     }
     
     public static Qytetet getInstance()
@@ -219,8 +219,10 @@ public class Qytetet {
     public void inicializarJuego(ArrayList<String> nombres)
     {
         inicializarJugadores(nombres);
+        inicializarTablero();
         inicializarCartasSorpresa();
-//        salidaJugadores();
+        salidaJugadores();
+    
         
     }
     
@@ -415,7 +417,7 @@ public class Qytetet {
     
     void inicializarCartasSorpresa()
     {
-        inicializarTablero();
+ 
         mazo.add(new Sorpresa("El banco tira la casa por la ventana. Recibe 500",TipoSorpresa.PAGARCOBRAR,500));
         mazo.add(new Sorpresa("Multa por bailar la conga. Paga 500",TipoSorpresa.PAGARCOBRAR,-500));
         mazo.add(new Sorpresa("Corre como el viento perdigón!. Ve a la casilla de salida.",TipoSorpresa.IRACASILLA,0));

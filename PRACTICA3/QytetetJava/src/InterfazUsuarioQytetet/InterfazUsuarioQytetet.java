@@ -8,6 +8,7 @@ package InterfazUsuarioQytetet;
 
 import static java.lang.System.in;
 import java.util.ArrayList;
+import java.util.Scanner;
 import static javafx.application.Platform.exit;
 import modeloqytetet.Qytetet;
 import modeloqytetet.Jugador;
@@ -30,13 +31,22 @@ public class InterfazUsuarioQytetet {
     }
     
     public String leerValorCorrecto(ArrayList<String> valoresCorrectos)
-    {   boolean encontrado = false;
+    {  
+        boolean encontrado = false;
         String v = new String();
+        OpcionMenu opcion;
+        int num = 0;
         for(int i=0;i<OpcionMenu.values().length && !encontrado;i++)
         {
             String value = OpcionMenu.values()[i].toString();
 
-            if(valoresCorrectos.get(i).equals(value)) encontrado = true; v = value;
+            for(int j=0;j<valoresCorrectos.size();j++)
+            {
+                if(value.equals(valoresCorrectos.get(j)))
+                    num = OpcionMenu.values()[i].ordinal();
+                    v = String.valueOf(num);
+                    encontrado = true;
+            }
         }
         
         return v;
@@ -45,10 +55,19 @@ public class InterfazUsuarioQytetet {
     public void realizarOperacion(int OpcionElegida,int CasillaElegida)
     {
         boolean libre;
+        Scanner scanner = new Scanner(System.in);
         switch(OpcionElegida)
         {
             case 0:  System.out.println("Iniciando el juego...\n");
-                modelo.inicializarJuego(obtenerNombreJugadores()); break;
+                String v;
+                ArrayList<String> array = new ArrayList<>();
+                System.out.println("Jugador 1...\n");
+                v = scanner.nextLine();
+                array.add(v);
+                System.out.println("Jugador 2...\n"); 
+                v = scanner.nextLine();
+                array.add(v);
+                modelo.inicializarJuego(array); break;
             case 1: System.out.println("A jugar!!!\n");
                 modelo.jugar();    break;
             case 2: System.out.println("Aplicando sorpresa...");
@@ -113,7 +132,9 @@ public class InterfazUsuarioQytetet {
             case 16: System.out.println("Mostrando tablero...");    
                 modelo.getTablero().toString();
             break;
-                          
+            default:
+                System.out.println("Ha ocurrido un error...Saliendo."); exit();
+            break;
         }
     }
     
@@ -171,7 +192,7 @@ public class InterfazUsuarioQytetet {
         for (String operacionesJuegoValida : operacionesJuegoValidas) {
             for (OpcionMenu value : OpcionMenu.values()) {
                 if(operacionesJuegoValida.equals(value.toString())) 
-                    System.out.println(operacionesJuegoValida);
+                    System.out.println(value.ordinal() + " : " + operacionesJuegoValida);
             }
         }       
         String s = leerValorCorrecto(operacionesJuegoValidas);
