@@ -159,7 +159,9 @@ public class Jugador implements Comparable {
     
     boolean estoyEnCalleLibre()
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean libre = false;
+        if(!casillaActual.tengoPropietario()) libre = true;
+        return true;
     }
     
     boolean hipotecarPropiedad(TituloPropiedad titulo)
@@ -195,7 +197,13 @@ public class Jugador implements Comparable {
     
     ArrayList<TituloPropiedad> obtenerPropiedades(boolean hipotecada)
     {
-        throw new UnsupportedOperationException("Sin implementar");
+        ArrayList<TituloPropiedad> titulo = new ArrayList<>();
+        for(TituloPropiedad t : propiedades)
+        {
+            if(t.isHipotecada() == hipotecada) titulo.add(t);
+        }
+        
+        return titulo;
     }
     
     void pagarAlquiler()

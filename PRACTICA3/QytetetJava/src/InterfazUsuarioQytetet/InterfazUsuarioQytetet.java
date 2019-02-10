@@ -36,16 +36,20 @@ public class InterfazUsuarioQytetet {
         String v = new String();
         OpcionMenu opcion;
         int num = 0;
-        for(int i=0;i<OpcionMenu.values().length && !encontrado;i++)
+        int tam = OpcionMenu.values().length;
+        for(int i=0;i<tam && !encontrado;i++)
         {
             String value = OpcionMenu.values()[i].toString();
 
             for(int j=0;j<valoresCorrectos.size();j++)
             {
-                if(value.equals(valoresCorrectos.get(j)))
+                String g = valoresCorrectos.get(j);
+                if(value.equals(g))
+                {
                     num = OpcionMenu.values()[i].ordinal();
                     v = String.valueOf(num);
                     encontrado = true;
+                }
             }
         }
         
@@ -58,7 +62,8 @@ public class InterfazUsuarioQytetet {
         Scanner scanner = new Scanner(System.in);
         switch(OpcionElegida)
         {
-            case 0:  System.out.println("Iniciando el juego...\n");
+            case 0:  
+                System.out.println("Iniciando el juego...\n");
                 String v;
                 ArrayList<String> array = new ArrayList<>();
                 System.out.println("Jugador 1...\n");
@@ -195,6 +200,7 @@ public class InterfazUsuarioQytetet {
                     System.out.println(value.ordinal() + " : " + operacionesJuegoValida);
             }
         }       
+        
         String s = leerValorCorrecto(operacionesJuegoValidas);
         int valor = Integer.parseInt(s);
         return valor;

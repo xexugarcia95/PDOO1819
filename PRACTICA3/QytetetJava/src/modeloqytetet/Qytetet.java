@@ -7,8 +7,10 @@
 package modeloqytetet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+import static javafx.application.Platform.exit;
 
 /**
  *
@@ -27,7 +29,7 @@ public class Qytetet {
     private Sorpresa cartaActual;
     private Jugador jugadorActual;
     private ArrayList<Jugador> jugadores = new ArrayList<>();
-    private Dado dado;
+    private Dado dado = Dado.getInstance();
     private EstadoJuego estado;
     private static final Scanner in= new Scanner(System.in);
     
@@ -428,6 +430,8 @@ public class Qytetet {
         mazo.add(new Sorpresa("Es tu cumpleaños. Recibe 20 de cada jugador.",TipoSorpresa.PORJUGADOR,20));
         mazo.add(new Sorpresa("Has perdido una apuesta. Paga 20 a cada jugador.",TipoSorpresa.PORJUGADOR,-20));
         mazo.add(new Sorpresa("Has quedado libre de la cárcel.",TipoSorpresa.SALIRCARCEL,0));
+        
+        Collections.shuffle(mazo);
     }
     
     
