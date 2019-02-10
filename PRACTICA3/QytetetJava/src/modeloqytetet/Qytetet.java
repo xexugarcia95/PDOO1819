@@ -98,32 +98,40 @@ public class Qytetet {
     public void aplicarSorpresa()
     {
         setEstado(EstadoJuego.JA_PUEDEGESTIONAR);
+        System.out.println("Carta sacada del mazo: " + cartaActual.getTexto());
         if(cartaActual.getTipo()==TipoSorpresa.SALIRCARCEL)
         {
             jugadorActual.setCartaLibertad(cartaActual);
+            System.out.println(jugadorActual.getNombre() + " ha obtenido una carta de libertad...");
         }else
         {
             mazo.add(cartaActual); //Incluir al final
             if(cartaActual.getTipo()==TipoSorpresa.PAGARCOBRAR)
             {
+                System.out.println("Toca pagar/cobrar!!!");
                 jugadorActual.modificarSaldo(cartaActual.getValor());
                 if(jugadorActual.getSaldo()<0)
                 {
                     setEstado(EstadoJuego.ALGUNJUGADORENBANCARROTA);
+                    System.out.println("BANCARROTA!!!!!");
                 }
             }else if(cartaActual.getTipo()==TipoSorpresa.IRACASILLA)
                 {
+                    System.out.println("HACEMOS SALTO DE CASILLAS!!");
                     int valor = cartaActual.getValor();
                     boolean casillaCarcel = tablero.esCasillaCarcel(valor);
                     if(casillaCarcel)
                     {
+                        System.out.println("Vaya... vas a la carcel");
                         encarcelarJugador();
                     }else
                     {
+                        System.out.println("Moviéndote por el tablero...");
                         mover(valor);
                     }
                 }else if(cartaActual.getTipo()==TipoSorpresa.PORCASAHOTEL)
                 {
+                    System.out.println("Toca pagar/cobrar por cada casa/hotel");
                     int cantidad = cartaActual.getValor();
                     int numeroTotal = jugadorActual.cuantasCasasHotelesTengo();
                     jugadorActual.modificarSaldo(cantidad*numeroTotal);
@@ -131,9 +139,11 @@ public class Qytetet {
                     if(jugadorActual.getSaldo()<0)
                     {
                         setEstado(EstadoJuego.ALGUNJUGADORENBANCARROTA);
+                        System.out.println("BANCARROTA!!!");
                     }
                 }else if(cartaActual.getTipo()==TipoSorpresa.PORJUGADOR)
                 {
+                    System.out.println("Toca pagar/cobrar a otro jugador");
                     for(int i=0;i<MAX_JUGADORES-1;i++)
                     {
                         Jugador jugador = jugadores.get(i);
@@ -144,12 +154,14 @@ public class Qytetet {
                         if(jugador.getSaldo()<0)
                         {
                             setEstado(EstadoJuego.ALGUNJUGADORENBANCARROTA);
+                            System.out.println("BANCARROTA!!!");
                         }
                         
                         jugadorActual.modificarSaldo(-cartaActual.getValor());
                         if(jugadorActual.getSaldo()<0)
                         {
                             setEstado(EstadoJuego.ALGUNJUGADORENBANCARROTA);
+                            System.out.println("BANCARROTA!!!");
                         }
                     }
                 }
@@ -267,6 +279,15 @@ public class Qytetet {
         int i =tirarDado();
         Casilla casillaActual= tablero.obtenerCasillaFinal(jugadorActual.getCasillaActual(), i);
         mover(casillaActual.getNumeroCasilla());
+        if(casillaActual.getTipo()==TipoCasilla.SORPRESA)
+        {
+            cartaActual = mazo.get(0);
+            mazo.remove(0);
+        }
+        System.out.println("El jugador " + jugadorActual.getNombre() + "se encuentra en la casilla "
+                + jugadorActual.getCasillaActual().getNumeroCasilla());
+        if(jugadorActual.getCasillaActual().getTipo()==TipoCasilla.CALLE) 
+            System.out.println(jugadorActual.getCasillaActual().getTitulo().getNombre());
     }
     
     void mover(int numCasillaDestino)
@@ -356,7 +377,7 @@ public class Qytetet {
         
         for(int i=0;i<posiciones.size();i++)
         {
-            System.out.println("Posicion " + i+1 + ": " + posiciones.get(i));
+            System.out.println("Posicion " + (i+1) + ": " + posiciones.get(i));
         }
     }
     
